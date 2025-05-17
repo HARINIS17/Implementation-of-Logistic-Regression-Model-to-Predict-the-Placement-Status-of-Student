@@ -38,73 +38,41 @@ Program to implement the the Logistic Regression Model to Predict the Placement 
 Developed by: HARINI S
 
 RegisterNumber:212224230083
-
+```
 import pandas as pd
-
 from sklearn.preprocessing import LabelEncoder
-
 from sklearn.model_selection import train_test_split
-
 from sklearn.linear_model import LogisticRegression
-
 from sklearn.metrics import accuracy_score,classification_report
-
 data=pd.read_csv("/content/Placement_Data (1).csv")
-
 data.head()
-
 data1=data.loc[:,~data.columns.isin(["sl_no","salary"])]
-
 data1.head()
-
 data1.isnull()
-
 data1.duplicated().sum()
-
 le=LabelEncoder()
-
 cols=["gender","ssc_b","hsc_b","degree_t","workex","specialisation","status"]
-
 data1[cols]=data1[cols].apply(lambda col:le.fit_transform(col))
-
 data1
-
 x=data1.iloc[:,:-1]
-
 x
-
 y=data1["status"]
-
 y
-
 import pandas as pd
-
 from sklearn.linear_model import LogisticRegression
-
 from sklearn.model_selection import train_test_split
-
 x_encoded = pd.get_dummies(x)
-
 x_tr, x_te, y_tr, y_te = train_test_split(x_encoded, y, test_size=0.2, random_state=0)
-
 lr = LogisticRegression(solver="liblinear")
-
 lr.fit(x_tr, y_tr)
-
 predictions = lr.predict(x_te)
-
 print(predictions)
-
 accuracy=accuracy_score(y_te,predictions)
-
 print(accuracy)
-
 classification_report1=classification_report(y_te,predictions)
-
 print(classification_report1)
-
 lr.predict([[1,80,1,90,1,1,90,1,0,85,1,85]])
-
+```
 ## Output:
 
 ![Screenshot 2025-04-24 085753](https://github.com/user-attachments/assets/8fa91920-c1e4-49ff-8e6d-7726c43043ef)
